@@ -1,0 +1,13 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file alias="copy.svg">resources/icons/edit-copy.svg</file>
+    <file>resources/icons/list-remove.svg</file>
+    <file alias="open-tunnel.svg">resources/icons/nm-device-wired.svg</file>
+    <file>resources/icons/nm-no-connection.svg</file>
+    <file alias="close-tunnel.svg">resources/icons/process-stop.svg</file>
+    <file>resources/icons/system-shutdown.svg</file>
+    <file>resources/icons/view-refresh.svg</file>
+    <file alias="edit-settings.svg">resources/icons/preferences-system.svg</file>
+    <file alias="folder.svg">resources/icons/folder.svg</file>
+</qresource>
+</RCC>
