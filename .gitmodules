@@ -1,3 +1,3 @@
-[submodule "controller_lib"]
+[submodule "rssht_controller_lib"]
 	path = lib/rssht_controller_lib
 	url = https://github.com/guallo/remote-ssh-tunnel-controller-lib.git
