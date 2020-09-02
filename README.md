@@ -1,5 +1,8 @@
 # remote-ssh-tunnel-controller-qt
 
+![Run tests](https://github.com/guallo/remote-ssh-tunnel-controller-qt/workflows/Run%20tests/badge.svg)
+![Upload release assets](https://github.com/guallo/remote-ssh-tunnel-controller-qt/workflows/Upload%20release%20assets/badge.svg)
+
 ```shell
 pip install remote-ssh-tunnel-controller-qt
 ```
