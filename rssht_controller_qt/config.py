@@ -4,10 +4,6 @@ import os
 # Absolute path
 _APP_HOME = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
 
-EXTRA_PATH = [
-    os.path.join(_APP_HOME, 'lib'),
-]
-
 CONFIG_FILENAME = os.path.expanduser('~/remote-ssh-tunnel-controller-qt.ini')
 
 # In seconds
