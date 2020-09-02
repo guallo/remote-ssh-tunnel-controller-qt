@@ -21,7 +21,7 @@ setuptools.setup(
     python_requires='>=3.6',
     install_requires=[
         'remote-ssh-tunnel-controller-lib>=0.1.0,<1',
-        'PySide2>=5.14.2.2,<6',
+        'PySide2>=5.14.2.2,<5.15',
     ],
     entry_points={
         'gui_scripts': [
