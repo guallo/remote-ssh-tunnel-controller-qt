@@ -110,7 +110,7 @@ jobs:
     - uses: actions/upload-artifact@v2.0.1
       with:
         name: appimages
-        path: *.AppImage
+        path: remote-ssh-tunnel-controller-qt-*.AppImage
 
   upload_appimage_to_github:
     needs: build_appimage
