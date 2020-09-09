@@ -5,7 +5,7 @@ on:
     types: [created]
 
 jobs:
-  build:
+  build_python_packages:
     runs-on: ubuntu-latest
 
     steps:
@@ -25,8 +25,8 @@ jobs:
         name: dist
         path: dist/*
     
-  upload_to_github:
-    needs: build
+  upload_python_packages_to_github:
+    needs: build_python_packages
     runs-on: ubuntu-latest
     
     steps:
@@ -57,8 +57,8 @@ jobs:
         asset_name: ${{ env.SDIST_PKG_NAME }}
         asset_content_type: application/zip
 
-  upload_to_pypi:
-    needs: build
+  upload_python_packages_to_pypi:
+    needs: build_python_packages
     runs-on: ubuntu-latest
     
     steps:
@@ -79,3 +79,59 @@ jobs:
         TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
       run: |
         twine upload dist/*
+
+  build_appimage:
+    needs: upload_python_packages_to_pypi
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        manylinux-version: [2010]
+        arch: [x86_64]
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install appimage
+    - name: Build
+      run: |
+        python-appimage build app \
+          --linux-tag manylinux${{ matrix.manylinux-version }}_${{ matrix.arch }} \
+          --python-version ${{ matrix.python-version }} \
+          appimage/
+        VERSION="$(grep -P '__version__' rssht_controller_qt/__init__.py | \
+          grep -Po '\d+\.\d+\.\d+')"
+        mv remote-ssh-tunnel-controller-qt-{,$VERSION-}${{ matrix.arch }}.AppImage
+    - uses: actions/upload-artifact@v2.0.1
+      with:
+        name: appimages
+        path: remote-ssh-tunnel-controller-qt-*.AppImage
+
+  upload_appimage_to_github:
+    needs: build_appimage
+    runs-on: ubuntu-latest
+    matrix:
+        arch: [x86_64]
+    
+    steps:
+    - uses: actions/download-artifact@v2
+      with:
+        name: appimages
+        path: appimages
+    - name: Define APPIMAGE_NAME
+      run: |
+        echo "::set-env name=APPIMAGE_NAME::$(cd appimages && ls *${{ matrix.arch }}.AppImage)"
+    - name: Upload ${{ env.APPIMAGE_NAME }}
+      uses: actions/upload-release-asset@v1.0.2
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: appimages/${{ env.APPIMAGE_NAME }}
+        asset_name: ${{ env.APPIMAGE_NAME }}
+        asset_content_type: application/vnd.appimage

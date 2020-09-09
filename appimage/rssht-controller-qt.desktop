@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=remote-ssh-tunnel-controller-qt
+Comment=Remote SSH Tunnel (RSSHT) controller - Qt frontend
+Exec=rssht-controller-qt
+Terminal=false
+Type=Application
+Icon=nm-device-wired
+Categories=Network;Utility;
+StartupNotify=true

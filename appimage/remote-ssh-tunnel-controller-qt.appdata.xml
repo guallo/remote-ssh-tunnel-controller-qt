@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>remote-ssh-tunnel-controller-qt</id>
+    <metadata_license>MIT</metadata_license>
+    <project_license>MIT</project_license>
+    <name>remote-ssh-tunnel-controller-qt</name>
+    <summary>Remote SSH Tunnel (RSSHT) controller - Qt frontend</summary>
+    <description></description>
+    <launchable type="desktop-id">rssht-controller-qt.desktop</launchable>
+    <url type="homepage">https://github.com/guallo/remote-ssh-tunnel-controller-qt</url>
+    <provides>
+        <binary>python{{ python-version }}</binary>
+    </provides>
+</component>
