@@ -3,12 +3,23 @@
 ![Run tests](https://github.com/guallo/remote-ssh-tunnel-controller-qt/workflows/Run%20tests/badge.svg)
 ![Upload release assets](https://github.com/guallo/remote-ssh-tunnel-controller-qt/workflows/Upload%20release%20assets/badge.svg)
 
-```shell
-pip install remote-ssh-tunnel-controller-qt
-```
+Download an [AppImage](https://github.com/guallo/remote-ssh-tunnel-controller-qt/releases/) (for linux only), give execution permission and run it:
 
 ```shell
-rssht-controller-qt
+# replace version (<X.Y.Z>) and architecture (<ARCH>) accordingly
+$ wget https://github.com/guallo/remote-ssh-tunnel-controller-qt/releases/download/v<X.Y.Z>/remote-ssh-tunnel-controller-qt-<X.Y.Z>-<ARCH>.AppImage
+
+$ chmod +x remote-ssh-tunnel-controller-qt-*.AppImage
+
+$ ./remote-ssh-tunnel-controller-qt-*.AppImage
+```
+
+Or `pip install` (for any plattform that support `pip`) and run it:
+
+```shell
+$ pip install remote-ssh-tunnel-controller-qt
+
+$ rssht-controller-qt
 ```
 
 Generate the public/private rsa key pair the *controller* will use to connect to the *intermediate SSH server*, replace `<YOUR-NICKNAME-WITHOUT-SPACE-CHARACTERS>` accordingly:
