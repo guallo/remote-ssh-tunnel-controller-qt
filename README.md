@@ -28,10 +28,10 @@ Generate the public/private rsa key pair the *controller* will use to connect to
 ssh-keygen -C <YOUR-NICKNAME-WITHOUT-SPACE-CHARACTERS> -N "" -f id_rsa
 ```
 
-Copy the public key to the *intermediate SSH server*, replace `<INTERMEDIATE-SSH-USER>`, `<INTERMEDIATE-SSH-SERVER>` and `<INTERMEDIATE-SSH-PORT>` accordingly (see [the configuration of the intermediate SSH server](https://github.com/guallo/remote-ssh-tunnel-agent/blob/master/README.md#manual-1)):
+Copy the public key to the *intermediate SSH server*, replace `<SSH-USER>`, `<SSH-SERVER>` and `<SSH-PORT>` accordingly (see [the configuration of the intermediate SSH server](https://github.com/guallo/remote-ssh-tunnel-agent/blob/master/README.md#manual-1)):
 
 ```shell
-ssh-copy-id -i id_rsa.pub <INTERMEDIATE-SSH-USER>@<INTERMEDIATE-SSH-SERVER> -p <INTERMEDIATE-SSH-PORT>
+ssh-copy-id -i id_rsa.pub <SSH-USER>@<SSH-SERVER> -p <SSH-PORT>
 ```
 
 ## Development
