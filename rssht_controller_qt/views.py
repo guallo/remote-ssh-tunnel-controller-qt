@@ -435,12 +435,16 @@ class RSSHTControllerWindow(QMainWindow):
         if lock_mutex:
             locker = QMutexLocker(controllerp.get_mutex())
         
+        treeview = self._treeview
         header = self._treeview.header()
         sel_model = self._treeview.selectionModel()
         model = self._treeview_model
         status_bar = self.statusBar()
         
         # Save state
+        
+        vslider_pos = treeview.verticalScrollBar().sliderPosition()
+        hslider_pos = treeview.horizontalScrollBar().sliderPosition()
         
         if sel_model.hasSelection():
             selected_agent_id = self._selected_data(self.AGENT_ID_COL)
@@ -653,6 +657,9 @@ class RSSHTControllerWindow(QMainWindow):
             sort_section = header.sortIndicatorSection()
             sort_order = header.sortIndicatorOrder()
             model.sort(sort_section, sort_order)
+        
+        treeview.verticalScrollBar().setSliderPosition(vslider_pos)
+        treeview.horizontalScrollBar().setSliderPosition(hslider_pos)
         
     def _selected_data(self, col):
         sel_model = self._treeview.selectionModel()
